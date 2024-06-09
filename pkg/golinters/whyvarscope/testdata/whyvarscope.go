@@ -1,16 +1,17 @@
 //golangcitest:args -Ewhyvarscope
 package testdata
 
-func zero() int {
-	return 0
-}
+import (
+	"fmt"
+	"math/rand"
+)
 
 func main() {
-	if z := zero(); z == 0 { // want "variable z can be removed and use assignee directly"
-		println("z is 0")
+	if r := rand.Int(); r == 0 { // want "variable r can be removed and use assignee directly"
+		fmt.Println("r is 0, Super Lucky!")
 	}
 
-	if z := zero(); z == 0 {
-		println(z)
+	if r := rand.Int(); r != 0 {
+		fmt.Printf("r is %d, Unlucky!", r)
 	}
 }
